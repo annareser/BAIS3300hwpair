@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/stylesheet.css') }}"
+    />
+    <title>Book Starter</title>
+  </head>
+
+  <body>
+    
+    <nav><a href="/">Home</a> | <a href ="/about">About</a></nav>
+    
+  </body>
+</html>
+<h2>Add a book to my library</h2>
+<hr />
+<main>
+  <form action="/add" method="POST">
+    <p>
+      <label for="Title">Title:</label>
+      <input type="text" id="Title" name="Title" />
+    </p>
+    <p>
+      <label for="Author">Author:</label>
+      <input type="text" id="Author" name="Author" />
+    </p>
+    <p>
+      <label for="Pages">Pages:</label>
+      <input type="text" id="Pages" name="Pages" />
+
+    </p>
+    <p>
+      <label>Classification:</label>
+      <label for="Classification">
+        <input
+          type="radio"
+          id="Classification"
+          name="Classification"
+          value="fiction"
+          required="required"
+        />
+        fiction
+      </label>
+
+      <label for="Classification">
+        <input
+          type="radio"
+          id="Classification"
+          name="Classification"
+          value="non-fiction"
+          required="required"
+        />
+        non-fiction
+      </label>
+    </p>
+
+    <fieldset>
+      <legend>Details:</legend>
+      <p>
+      <label for="Details">
+        <input
+          type="checkbox"
+          id="Details"
+          name="Details"
+          value="I own this book"
+        />
+        I own this book
+      </label>
+    </p>
+    <p>
+      <label for="Details">
+        <input
+          type="checkbox"
+          id="Details"
+          name="Details"
+          value="I've read this book"
+        />
+        I've read this book
+      </label>
+    </p>
+    <p>
+      <label for="Details">
+        <input
+          type="checkbox"
+          id="Details"
+          name="Details"
+          value="I liked this book"
+        />
+        I liked this book
+      </label>
+    </p>
+    <p>
+      <label for="Details">
+        <input
+          type="checkbox"
+          id="Details"
+          name="Details"
+          value="I would recommend this book to others"
+        />
+        I would recommend this book to others
+      </label>
+    </p>
+    </fieldset>
+
+    <p>
+      <label for="Acquisition">
+        How did I get this book?
+        <select name="Acquisition" id="how" required>
+          <option value="" selected>- Select option -</option>
+          <option value="I purchased it.">I purchased it.</option>
+          <option value="It was a gift.">It was a gift.</option>
+          <option value="I checked it out from the library.">I checked it out from the library.</option>
+          <option value="A friend loaned it to me.">A friend loaned it to me.</option>"
+        </select>
+      </label>
+    </p>
+
+    <p><input type="submit" id="Add Book" value="Add Book" /></p>
+  </form>
+
+  <br /><br />
+  {% if books %}
+  <h2>List of books</h2>
+  <hr />
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Classification</th>
+        <th>Details</th>
+        <th>Acquisition</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <td>{{ book.Title }}</td>
+        <td>{{ book.Author }}</td>
+        <td>{{ book.Pages }}</td>
+        <td>{{ book.Classification }}</td>
+        <td>{{ book.Details }}</td>
+        <td>{{ book.Acquisition }}</td>
+      </tr>
+        {% endfor %}
+      
+    </tbody>
+  </table>
+  {% endif %}
+</main>
