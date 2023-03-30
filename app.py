@@ -47,6 +47,7 @@ def add():
             "Acquisition": Acquisition,
         }
 
+
         print(book_dict)
         all_books_dict.append(
             book_dict
